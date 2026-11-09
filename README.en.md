@@ -2,7 +2,7 @@
 
 [中文](README.md) | English
 
-A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that previews 3D models in the right sidebar and converts/exports them between **GLB, glTF, FBX, OBJ, STL and PLY**.
+A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that previews 3D models in the right sidebar and converts/exports them between **GLB, glTF, FBX, OBJ, STL and PLY**. It also parses **runtime-built three.js scenes** and exports them in two granularities: the **full scene** or **per-object groups**.
 
 It is the DSH packaging of `three-export-kit`, merged with the full preview capability of `dsh-3d-model-preview`.
 
@@ -11,8 +11,46 @@ It is the DSH packaging of `three-export-kit`, merged with the full preview capa
 - **Preview** — open `.glb .gltf .stl .ply .obj .fbx` from the sidebar; PBR materials, 15 texture slots, animation clips, auto framing, wireframe/normal/ground-grid toggles.
 - **Export from the preview** — GLB / glTF / FBX / OBJ / STL / PLY of the loaded scene (textures and animation preserved). Writes next to the source model, or falls back to a browser download.
 - **Scene export page** — load an HTML page that builds a three.js scene at runtime (or paste three.js code), scan it, then export the scene as a model. Includes an **opaque export** switch that fixes glTF BLEND depth-order artifacts.
-- **Split export** — split a scene into individual objects (buildings, trees, bridge, villagers, props), show a thumbnail for each, tick the ones you want and export them as separate files.
+- **Full-scene export** — export the whole `THREE.Scene` as one GLB/glTF/FBX/OBJ/STL/PLY file, preserving meshes, materials, textures and transforms.
+- **Grouped export** — split the scene into individual objects (buildings, trees, bridge, villagers, props), show a thumbnail for each, tick the ones you want and export each as a separate file under `split-export/`.
 - **Agent tool `three_export`** — convert or inspect models by path from an agent session.
+
+## three.js scene parsing: full export and grouped export
+
+This is not just a model-file viewer: it parses **runtime-built three.js scenes** and supports two export granularities.
+
+| Mode | What it does | Output |
+|---|---|---|
+| **Full export** | Export the whole `THREE.Scene` in one pass, keeping meshes, materials, textures and transforms | One GLB / glTF / FBX / OBJ / STL / PLY file |
+| **Grouped export** | Split the scene into individual objects by geometry connectivity and bounding-box relationships (buildings, trees, bridge, villagers, props), preview thumbnails, then tick what to export | One file per object, written to `split-export/` |
+
+Parsing sources:
+
+- **HTML file** — loads the page in a same-origin iframe, runs its scripts, scans `window` for a reachable `THREE.Scene`, and reports mesh / triangle / material counts.
+- **three.js code** — paste code, run it in the page, scan the resulting scene; useful for procedural scenes.
+- Handles `Group` nodes, multi-material meshes, textures and transforms; lights, fog and background are stripped before export (model files only carry geometry + materials).
+
+Grouped split strategy (tested):
+
+- Existing `Group` objects (trees, villagers, props) become one object directly.
+- Large meshes merged by material (buildings, bridge, plaza props) are split by index connectivity into boxes, then merged by AABB intersection/touching.
+- Roofs/windows contained by a building's bounding box are folded back into the building; bridge deck/rail parts with nearly identical bounds are merged.
+- Terrain (ground, river, roads) and tiny decorations (flowers, grass, stones) are skipped; only main subjects are exported.
+- voxel-town test: 139 meshes / 48,912 triangles → **88 objects**; selecting 83 exported 83 files.
+
+### Screenshots
+
+![Full scene export](docs/screenshots/scene-export.png)
+
+*Full export: 139 meshes / 48,912 triangles / 82 materials parsed; GLB exported at 3.67 MB, with an export record that can be reopened in the preview.*
+
+![Grouped preview](docs/screenshots/split-preview.png)
+
+*Grouped preview: 88 objects, each with an auto-rendered thumbnail, dimensions and triangle count; all selected by default, individually toggleable.*
+
+![Grouped export done](docs/screenshots/split-export-done.png)
+
+*83 selected objects exported to `split-export/`: one file per object, in GLB/glTF/FBX/OBJ/STL/PLY.*
 
 ## Install
 
