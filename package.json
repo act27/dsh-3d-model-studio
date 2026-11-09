@@ -1,0 +1,80 @@
+{
+  "name": "dsh-3d-model-studio",
+  "version": "0.3.1",
+  "description": "Preview 3D models in the right sidebar and convert them between glTF/GLB, FBX, OBJ, STL and PLY.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/act27/dsh-3d-model-studio.git"
+  },
+  "homepage": "https://github.com/act27/dsh-3d-model-studio#readme",
+  "bugs": {
+    "url": "https://github.com/act27/dsh-3d-model-studio/issues"
+  },
+  "author": "act27",
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client/client.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/convert.js",
+    "lib/convert-worker.mjs",
+    "lib/kit/env.js",
+    "lib/kit/load.js",
+    "lib/kit/textures.js",
+    "lib/kit/index.js",
+    "client/client.js",
+    "client/client.three.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.md",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar-documentpreview",
+        "@deepseek-ai/dsh-client-ui-sidebar-right"
+      ]
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "3d",
+    "gltf",
+    "glb",
+    "fbx",
+    "model",
+    "preview",
+    "export",
+    "convert",
+    "three.js"
+  ],
+  "license": "MIT",
+  "engines": {
+    "dsh": ">=0.2.2-rc.1",
+    "node": ">=20"
+  },
+  "dependencies": {
+    "three": "^0.184.0",
+    "@comfyorg/fbx-exporter-three": "^1.0.2"
+  },
+  "optionalDependencies": {
+    "@napi-rs/canvas": "^1.1.0"
+  }
+}

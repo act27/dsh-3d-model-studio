@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "3D model studio",
+    "description": "Preview 3D models in the right sidebar and convert them to GLB, glTF or FBX: export straight from the preview toolbar, or let the agent batch-convert workspace models with the three_export tool."
+  }
+}

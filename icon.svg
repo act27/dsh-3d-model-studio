@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="3D model studio">
+  <defs>
+    <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cc4ff"/>
+      <stop offset="1" stop-color="#4f8cff"/>
+    </linearGradient>
+    <linearGradient id="left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f8cff"/>
+      <stop offset="1" stop-color="#2f63c8"/>
+    </linearGradient>
+    <linearGradient id="right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#356fc4"/>
+      <stop offset="1" stop-color="#1f4c96"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 8 54 20 32 32 10 20Z" fill="url(#top)"/>
+  <path d="M10 20 32 32v22L10 42Z" fill="url(#left)"/>
+  <path d="M54 20 32 32v22l22-12Z" fill="url(#right)"/>
+  <path d="M32 32 10 20M32 32l22-12M32 32v22" fill="none" stroke="#e8f2ff" stroke-opacity=".55" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M42 46h10m0 0-4-4m4 4-4 4" fill="none" stroke="#9be6c3" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

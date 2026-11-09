@@ -1,0 +1,9 @@
+node_modules/
+.build/
+dist/
+*.tgz
+*.log
+.DS_Store
+.env
+split-export/
+harness-*.glb

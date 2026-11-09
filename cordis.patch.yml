@@ -1,0 +1,28 @@
+# dsh-3d-model-studio — bundle patch.
+#
+# One layer: insert the package into the profile's layer stack. That insertion
+# gives the package a client graph row (so the browser bundle is served at
+# /plugins/dsh-3d-model-studio/client.js and the lazy engine chunk at
+# /plugins/dsh-3d-model-studio/client.three.js) and activates the Host half,
+# which registers:
+#
+#   * the `three_export` agent tool — converts a model file in the workspace
+#     (glb/gltf/fbx/obj/stl/ply -> glb/gltf/fbx) in a child Node process;
+#   * an exact HTTP route the preview UI posts browser-side exports to, so the
+#     converted file lands next to the source model instead of only downloading.
+#
+# The Host half owns no session state. Removing this entry removes the preview,
+# the tool and the route together.
+- insert:
+    - id: dsh-3d-model-studio
+      name: dsh-3d-model-studio
+      config:
+        enabled: true
+        # FBX coordinate-system preset used when the caller does not override it.
+        # threejs | unity | unreal | blender | maya
+        preset: blender
+        # Hard ceiling for one conversion (child process), in milliseconds.
+        timeoutMs: 180000
+        # Let the preview UI write the browser-side export next to the source
+        # model through the Host route. Set false to keep exports download-only.
+        allowWorkspaceWrite: true

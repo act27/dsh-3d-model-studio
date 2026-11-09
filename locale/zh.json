@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "3D 模型工作室",
+    "description": "在右侧栏预览 3D 模型，并把模型转换成 GLB / glTF / FBX：预览工具栏可直接导出，Agent 也能用 three_export 工具批量转换工作区里的模型文件。"
+  }
+}
