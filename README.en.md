@@ -2,7 +2,7 @@
 
 [中文](README.md) | English
 
-A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that previews 3D models in the right sidebar and converts/exports them between **GLB, glTF, FBX, OBJ, STL and PLY**. It also parses **runtime-built three.js scenes** and exports them in two granularities: the **full scene** or **per-object groups**.
+A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin that previews 3D models and parses **three.js scenes** into **GLB, glTF, FBX, OBJ, STL and PLY**, with both **full-scene export** and **per-object grouped export**. It previews/converts existing model files and also loads runtime-built three.js scenes from an HTML page or pasted code.
 
 It is the DSH packaging of `three-export-kit`, merged with the full preview capability of `dsh-3d-model-preview`.
 

@@ -2,10 +2,10 @@
 
 [English](README.en.md) | 中文
 
-在 DeepSeek Harness 右侧栏**预览** 3D 模型，并把模型**转换导出**为 GLB / glTF / FBX
-（浏览器端还可以导出 OBJ / STL / PLY）。更重要的是：它能把**运行时构建的 three.js 场景**
-解析出来，支持**完整导出**和**按个体分组导出**两种粒度。它是 `three-export-kit` 的 DSH
-插件化版本，并合并了 `dsh-3d-model-preview` 的全部预览能力。
+在 DeepSeek Harness 右侧栏预览 3D 模型，并把 **three.js 场景**解析导出为 GLB / glTF / FBX /
+OBJ / STL / PLY，支持**完整导出**和**按个体分组导出**两种粒度。它既能直接预览/转换已有的
+模型文件，也能加载运行时构建的 three.js 场景（HTML 页面或粘贴代码）。它是 `three-export-kit`
+的 DSH 插件化版本，并合并了 `dsh-3d-model-preview` 的全部预览能力。
 
 ## 一、能力
 
