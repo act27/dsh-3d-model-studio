@@ -5,7 +5,7 @@
 在 DeepSeek Harness 右侧栏预览 3D 模型，并把 **three.js 场景**解析导出为 GLB / glTF / FBX /
 OBJ / STL / PLY，支持**完整导出**和**按个体分组导出**两种粒度。它既能直接预览/转换已有的
 模型文件，也能加载运行时构建的 three.js 场景（HTML 页面或粘贴代码）。它是 `three-export-kit`
-的 DSH 插件化版本，并合并了 `dsh-3d-model-preview` 的全部预览能力。
+的 DSH 插件化版本，包含完整的 3D 模型预览与导出能力。
 
 ## 一、能力
 
@@ -99,9 +99,6 @@ pwsh -NoProfile -File .\scripts\install.ps1
   可选 `@napi-rs/canvas` 都会装进 profile，源码目录可独立移动或删除。
 - 装完 profile 约 74 MB（three 约 35 MB，canvas 平台二进制约 38 MB）。
 - tarball 是快照：**改完源码必须重新 `scripts/install.ps1` + `install_bundle`**，再重启 DSH。
-- 与 `dsh-3d-model-preview` 同时启用时，两者都注册 `.glb/.gltf/...` 的文档预览；
-  `documentPreviews` 按「同优先级 → 注册顺序」取第一个。**建议禁用旧 bundle**，只保留本包
-  （旧包源码保留，可随时重新启用）。
 - Host 半代码不会随 HMR 自动生效（HMR 不监视 profile 之外的目录）。安装后按提示重启 DSH；
   仅改 Host 代码时，禁用/启用一次 bundle 也能强制重新加载模块。
 
@@ -367,7 +364,7 @@ Client 冒烟测试覆盖：bundle 自注册（owner id / chunk 名）、`docume
   `@comfyorg`、`@napi-rs`、`fflate`；源码目录可独立移动或删除。
 - Host 工具 `three_export` 出现在工具清单，且上述真实调用通过。
 - Client：`cordis_inspect_query`（`platform=client`）显示 `sidebar.right.tab.document`
-  的 occupant 为 `dsh-3d-model-studio/model`，旧 `dsh-3d-model-preview/model` 已移除。
+  的 occupant 为 `dsh-3d-model-studio/model`。
 - Client：`sidebar.right.pane.tab` 的 occupant 增加 `dsh-3d-model-studio/scene-export`
   （场景导出页 body 已注册；guide 卡片由同一次 `apply` 注册）。
 - **场景导出页在真实 Chromium 里跑通**（用 `scene-export-tool` 的 `harness.html` 挂载
