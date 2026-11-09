@@ -48,9 +48,9 @@ Grouped split strategy (tested):
 
 *Grouped preview: 88 objects, each with an auto-rendered thumbnail, dimensions and triangle count; all selected by default, individually toggleable.*
 
-![Grouped export done](docs/screenshots/split-export-done.png)
+![Preview window](docs/screenshots/preview-window.png)
 
-*83 selected objects exported to `split-export/`: one file per object, in GLB/glTF/FBX/OBJ/STL/PLY.*
+*Preview window: opening the exported `object-001.glb` (1,284 triangles / 3 materials) with auto framing, PBR materials, and the bottom toolbar (reset view, auto-rotate, wireframe, textures, normals, ground grid, animation, export).*
 
 ## Install
 
